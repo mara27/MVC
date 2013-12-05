@@ -17,7 +17,7 @@ namespace MvcEmployee
         public IList<EmployeeModel> GetEmployeesModelList()
         {
             
-            var _employeesModel = new List<EmployeeModel>();
+            IList<EmployeeModel> _employeesModel = new List<EmployeeModel>();
             foreach (var emp in _employeeService.GetAll())
             {
                 if (emp.Manager != null)

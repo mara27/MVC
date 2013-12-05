@@ -30,7 +30,7 @@ namespace MvcEmployee.Controllers
                 var empList = Session["employeesListModelSession"];
                 return View(empList);
             }
-                
+
         }
 
         public ActionResult Create()
@@ -44,22 +44,33 @@ namespace MvcEmployee.Controllers
         {
             IList<EmployeeModel> employeesListSession = (IList<EmployeeModel>)Session["employeesListModelSession"];
             EmployeeModel lastEmployee = employeesListSession.Last();
-            Int64 newId = lastEmployee.Id + 1;
-            string newFirstName = Request["FirstName"].ToString();
-            string newLastName = Request["LastName"].ToString();
-            double newSalary = Convert.ToDouble(Request["Salary"]);
-            Int64 newManagerId = Convert.ToInt64(Request["ManagerName"]);
-            string newManagerName = "";
-            foreach(var emp in employeesListSession)
-            {
-                if (emp.Id == newManagerId)
-                    newManagerName = emp.FullName;
-
-            }
-            EmployeeModel newEmployeeModel = new EmployeeModel(newId, newFirstName, newLastName, newSalary, newManagerName);
-            employeesListSession.Add(newEmployeeModel);
+            Int64 newEmpId = lastEmployee.Id + 1;
+            string newEmpFirstName = Request["FirstName"].ToString();
+            string newEmpLastName = Request["LastName"].ToString();
+            double newEmpSalary = Convert.ToDouble(Request["Salary"]);
+            Int64 managerId = Convert.ToInt64(Request["ManagerName"]);
+            EmployeeModel manager = employeesListSession.FirstOrDefault(x => x.Id == managerId);
+            string newEmpManagerName = manager.FullName;
+            EmployeeModel newEmployee = new EmployeeModel(newEmpId, newEmpFirstName, newEmpLastName, newEmpSalary, newEmpManagerName);
+            employeesListSession.Add(newEmployee);
             Session["employeeListModelSession"] = employeesListSession;
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        public ActionResult Details(int id)
+        {
+            IList<EmployeeModel> employeesListSession = (IList<EmployeeModel>)Session["employeesListModelSession"];
+            EmployeeModel emp = employeesListSession.FirstOrDefault(x => x.Id == id);
+            if(emp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(emp);
         }
     }
 }
