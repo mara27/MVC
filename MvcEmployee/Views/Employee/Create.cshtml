@@ -42,10 +42,11 @@
         </div>
         <div class="editor-field">
             @{
+                var _employeeService = new BusinessLogicLibrary.EmployeeService(new BusinessLogicLibrary.SessionRepository());
                 var entityToModel = new MvcEmployee.EntityToModel();
-                var employeesModelList = entityToModel.GetEmployeesModelList();
+                var employeesModelList = entityToModel.GetEmployeesModelList(_employeeService.GetAll());
             }
-           @Html.DropDownList("ManagerName", new SelectList(employeesModelList, "Id", "FullName"))
+           @Html.DropDownList("ManagerId", new SelectList(employeesModelList, "Id", "FullName"))
         </div>
 
         <p>

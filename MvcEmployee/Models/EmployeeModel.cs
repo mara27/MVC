@@ -12,19 +12,24 @@ namespace MvcEmployee.Models
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public Double Salary { get; set; }
+        public Int64 ManagerId { get; set; }
         public String ManagerName { get; set; }
 
         public String FullName { get { return String.Format("{0} {1}", FirstName, LastName); } }
 
-        public EmployeeModel(Int64 id, string firstName, string lastname, double salary, string managerName) 
+        public EmployeeModel(long id, string firstName, string lastname, double salary, long managerId, string managerName)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastname;
             Salary = salary;
+            ManagerId = managerId;
             ManagerName = managerName;
         }
 
-        public EmployeeModel() { }
+        public EmployeeModel() 
+        {
+            Id = 0;
+        }
     }
 }
