@@ -49,8 +49,13 @@ namespace MvcEmployee.Controllers
             string newLastName = Request["LastName"].ToString();
             double newSalary = Convert.ToDouble(Request["Salary"]);
             Int64 newManagerId = Convert.ToInt64(Request["ManagerName"]);
-            //EmployeeModel newManager = employeesListSession.First(newManager.Id => newManager.Id == newManagerId);
             string newManagerName = "";
+            foreach(var emp in employeesListSession)
+            {
+                if (emp.Id == newManagerId)
+                    newManagerName = emp.FullName;
+
+            }
             EmployeeModel newEmployeeModel = new EmployeeModel(newId, newFirstName, newLastName, newSalary, newManagerName);
             employeesListSession.Add(newEmployeeModel);
             Session["employeeListModelSession"] = employeesListSession;
