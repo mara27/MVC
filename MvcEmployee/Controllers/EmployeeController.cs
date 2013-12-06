@@ -28,14 +28,15 @@ namespace MvcEmployee.Controllers
 
         public ActionResult Create()
         {
-            var employee = new EmployeeModel();
-            return View(employee);
+            var emp = new EmployeeModel();
+            return View(emp);
         }
 
         [HttpPost]
-        public ActionResult Create(EmployeeModel employee)
+        public ActionResult Create(EmployeeModel empModel)
         {
-            _employeeService.Add(_employeeService.CreatEmployee(employee.FirstName, employee.LastName, employee.Salary, employee.ManagerId));
+            Employee emp = _employeeService.CreatEmployee(empModel.FirstName, empModel.LastName, empModel.Salary, empModel.ManagerId);
+            _employeeService.Add(emp);
             //IList<EmployeeModel> employeesListSession = (IList<EmployeeModel>)Session["employeesListModelSession"];
             //EmployeeModel lastEmployee = employeesListSession.Last();
             //Int64 newEmpId = lastEmployee.Id + 1;
@@ -53,7 +54,17 @@ namespace MvcEmployee.Controllers
 
         public ActionResult Details(int id)
         {
-            return View(_employeeService.GetById(id));
+            Employee emp = _employeeService.GetById(id);
+            if(emp == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                EmployeeModel empModel = entityToModel.GetEmployeeModel(emp);
+                return View(empModel);
+            }
+            
             //IList<EmployeeModel> employeesListSession = (IList<EmployeeModel>)Session["employeesListModelSession"];
             //EmployeeModel emp = employeesListSession.FirstOrDefault(x => x.Id == id);
             //if(emp == null)
@@ -63,24 +74,58 @@ namespace MvcEmployee.Controllers
             //return View(emp);
         }
 
+        public ActionResult Delete(int id)
+        {
+            Employee emp = _employeeService.GetById(id);
+            if (emp == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                _employeeService.Delete(id);
+                return RedirectToAction("Index");
+            }
+            
+        }
+
         public ActionResult Edit(int id)
         {
-            EmployeeModel empModel = entityToModel.GetEmployeeModel(_employeeService.GetById(id));
-
-            return View(empModel);
-            //IList<EmployeeModel> employeesListSession = (IList<EmployeeModel>)Session["employeesListModelSession"];
-            //EmployeeModel emp = employeesListSession.FirstOrDefault(x => x.Id == id);
-            //if(emp == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(emp);
+            //var list = _employeeService.GetAll();
+            var emp = _employeeService.GetById(id);
+            if(emp == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                EmployeeModel empModel = entityToModel.GetEmployeeModel(emp);
+                //_employeeService.Delete(id);
+                return View(empModel);
+            }
+                     
         }
 
         [HttpPost]
         public ActionResult Edit(EmployeeModel empModel)
         {
-            //_employeeService.Add(empModel);
+            Employee emp = _employeeService.GetById(empModel.Id);
+            emp.FirstName = empModel.FirstName;
+            emp.LastName = empModel.LastName;
+            emp.Salary = empModel.Salary;
+            emp.Manager = _employeeService.GetById(empModel.ManagerId);
+            //emp.Manager.FullName = empModel.ManagerName;
+
+            //var emplist = _employeeService.GetAll();
+            //var empListModel = entityToModel.GetEmployeesModelList(emplist);
+            //var empEdited = empListModel.Single(emp => emp.Id == empModel.Id);
+            //empEdited.FirstName = empModel.FirstName;
+            //empEdited.LastName = empModel.LastName;
+            //empEdited.Salary = empModel.Salary;
+            //empEdited.ManagerName = empModel.ManagerName;
+
+            //Employee emp = _employeeService.CreatEmployee(empModel.FirstName, empModel.LastName, empModel.Salary, empModel.ManagerId);
+            //_employeeService.Add(emp);
             return RedirectToAction("Index");
         }
     }

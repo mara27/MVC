@@ -12,22 +12,32 @@ namespace MvcEmployee
 {
     public class EntityToModel
     {
-        IEmployeeService _employeeService = new EmployeeService(new SessionRepository());
+        //IEmployeeService _employeeService = new EmployeeService(new SessionRepository());
 
-        public IList<EmployeeModel> GetEmployeesModelList()
+        public EmployeeModel GetEmployeeModel(Employee emp)
         {
-            
+            EmployeeModel empModel;
+            if (emp.Manager != null)
+                empModel = new EmployeeModel(emp.Id, emp.FirstName, emp.LastName, emp.Salary, emp.Manager.Id, emp.Manager.FullName);
+            else
+                empModel = new EmployeeModel(emp.Id, emp.FirstName, emp.LastName, emp.Salary, 0, null);
+
+            return empModel;
+        }
+
+        public IList<EmployeeModel> GetEmployeesModelList(IList<Employee> empList)
+        {
+
             IList<EmployeeModel> _employeesModel = new List<EmployeeModel>();
-            foreach (var emp in _employeeService.GetAll())
+            foreach (var emp in empList)
             {
-                if (emp.Manager != null)
-                    _employeesModel.Add(new EmployeeModel(emp.Id, emp.FirstName, emp.LastName, emp.Salary, emp.Manager.FullName));
-                else
-                    _employeesModel.Add(new EmployeeModel(emp.Id, emp.FirstName, emp.LastName, emp.Salary, null));
+                    _employeesModel.Add(GetEmployeeModel(emp));
+                //    _employeesModel.Add(new EmployeeModel(emp.Id, emp.FirstName, emp.LastName, emp.Salary, emp.Manager.Id, emp.Manager.FullName));
+                //else
+                //    _employeesModel.Add(new EmployeeModel(emp.Id, emp.FirstName, emp.LastName, emp.Salary, 0, null));
             }
 
             return _employeesModel;
         }
-
     }
 }
