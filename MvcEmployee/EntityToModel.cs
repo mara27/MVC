@@ -32,9 +32,6 @@ namespace MvcEmployee
             foreach (var emp in empList)
             {
                     _employeesModel.Add(GetEmployeeModel(emp));
-                //    _employeesModel.Add(new EmployeeModel(emp.Id, emp.FirstName, emp.LastName, emp.Salary, emp.Manager.Id, emp.Manager.FullName));
-                //else
-                //    _employeesModel.Add(new EmployeeModel(emp.Id, emp.FirstName, emp.LastName, emp.Salary, 0, null));
             }
 
             return _employeesModel;
