@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessLogicLibrary;
 using EntitiesLibrary;
-using EmployeeListLibrary;
 using MvcEmployee.Models;
 
 namespace MvcEmployee.Controllers

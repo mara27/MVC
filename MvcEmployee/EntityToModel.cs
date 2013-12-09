@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BusinessLogicLibrary;
 using EntitiesLibrary;
-using EmployeeListLibrary;
 using MvcEmployee.Models;
 
 namespace MvcEmployee
