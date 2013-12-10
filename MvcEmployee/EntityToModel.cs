@@ -10,7 +10,6 @@ namespace MvcEmployee
 {
     public class EntityToModel
     {
-        //IEmployeeService _employeeService = new EmployeeService(new SessionRepository());
 
         public EmployeeModel GetEmployeeModel(Employee emp)
         {

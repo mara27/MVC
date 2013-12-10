@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using EntitiesLibrary;
 
+
 namespace EmployeeListLibrary
 {
     public static class EmployeeList
     {
+
         public static IList<Employee> ConstructEmployeesList()
         {
             var employeesList = new List<Employee>
@@ -23,6 +25,7 @@ namespace EmployeeListLibrary
             employeesList[1].Manager = employeesList[0];
             employeesList[2].Manager = employeesList[0];
             employeesList[4].Manager = employeesList[3];
+            
 
             return employeesList;
         }

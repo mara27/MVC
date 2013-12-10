@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcEmployee", "MvcEmployee\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeListLibrary", "EmployeeList\EmployeeListLibrary.csproj", "{C55BD33F-6555-4949-B1EB-85489793143C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbOperationsLibrary", "DbConnectionLibrary\DbOperationsLibrary.csproj", "{4B2E9A79-FE3E-4D58-A881-9B7F4D82D91B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryforMvcEmployee.Tests", "ClassLibraryforMvcEmployee.Tests\ClassLibraryforMvcEmployee.Tests.csproj", "{D3A03BD4-6BEE-49B2-BE50-68C735B7F899}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{C55BD33F-6555-4949-B1EB-85489793143C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C55BD33F-6555-4949-B1EB-85489793143C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C55BD33F-6555-4949-B1EB-85489793143C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B2E9A79-FE3E-4D58-A881-9B7F4D82D91B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B2E9A79-FE3E-4D58-A881-9B7F4D82D91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B2E9A79-FE3E-4D58-A881-9B7F4D82D91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B2E9A79-FE3E-4D58-A881-9B7F4D82D91B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A03BD4-6BEE-49B2-BE50-68C735B7F899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A03BD4-6BEE-49B2-BE50-68C735B7F899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A03BD4-6BEE-49B2-BE50-68C735B7F899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A03BD4-6BEE-49B2-BE50-68C735B7F899}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
